@@ -1,23 +1,26 @@
 export const router = {
-    async init(routes) {
+    async init(routes, config) {
         this.routes = routes;
+        this.config = config;
 
-        await this.render(window.location.hash || '#overview');
-
+        await this.render(window.location.hash);
+        
         window.addEventListener('hashchange', async () => {
             await this.render(window.location.hash);
         });
     },
     async render(route) {
-        const page = routes[route] || routes['#notFound'];
-
-        const response = await fetch(`./app/pages/${page.file}/${page.file}.html`);
-        const html = await response.text();
+        const page = this.routes[route] || this.routes[this.config.router.defaultRoute];
+        const response = await fetch(`./app/pages/${page.file}.html`);
+        const view = await response.text();
         
-        document.querySelector('#app').innerHTML = html;
+        const app = document.querySelector('#app');
 
-        if(typeof(page.onload) === "function")
+        app.innerHTML = view;
+        
+        if(typeof(page.onload) === "function") {
             await page.onload();
+        }
     }
 };
 

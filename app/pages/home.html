@@ -1,0 +1,27 @@
+<section>
+    <p class="section-header">View my work here</p>
+
+    <ul class="cards" x-data="projects">
+        <template x-for="(project, index) in projects" :key="index">
+            <li class="card" x-data="{open: false}" @click="open = !open">
+                <div class="card-heading">
+                    <div class="card-title">
+                        <h2 x-text="project.title"></h2>
+                        <span class="badge" x-text="project.year"></span>
+                    </div>
+                    <p x-text="project.role"></p>
+                </div>
+                <div class="card-details" x-show="open">
+                    <p x-text="project.description || 'No description available.'"></p>
+                    
+                    <template x-if="project.url">
+                        <a :href="project.url" target="_blank" @click.stop>
+                            View project
+                            <i data-lucide="square-arrow-out-up-right"></i>
+                        </a>
+                    </template>
+                </div>
+            </li>
+        </template>
+    </ul>
+</section>

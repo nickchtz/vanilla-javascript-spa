@@ -1,3 +1,5 @@
+import { home } from "../controllers/home.js";
+
 export const routes = {
     '#notFound': {
         file: 'notFound',
@@ -5,6 +7,11 @@ export const routes = {
     },
     '#home': {
         file: 'home',
-        title: 'Home'
+        title: 'Home',
+        onload: home
+    },
+    '#about': {
+        file: 'about',
+        title: 'About page'
     }
 };

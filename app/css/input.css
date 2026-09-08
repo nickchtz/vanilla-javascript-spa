@@ -1,1 +1,121 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
+
+@theme{
+    --color-primary: var(--color-indigo-800);
+    --font-sans: 'Poppins', sans-serif;
+    --font-display: 'BBH Bartle';
+}
+
+@utility abs-center {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+@layer base{
+    *{
+        @apply outline-transparent text-taupe-300;
+    }
+
+    body {
+        scroll-behavior: smooth;
+        overflow-x: hidden; 
+        @apply bg-taupe-950 min-h-dvh relative w-full;
+        
+    }
+}
+
+@layer globals{
+    hgroup{
+        @apply flex flex-col gap-2;
+
+        h1{
+            @apply text-white text-3xl font-black font-display leading-6 tracking-tight;
+        }
+
+        p{
+            @apply md:text-xl font-light;
+        }
+    }
+
+    section{
+        @apply w-full m-auto;
+    }
+
+    a{
+        @apply transition hover:text-white w-fit;
+    }
+}
+
+@layer components{
+    .wrapper{
+        @apply w-full px-8 max-w-5xl m-auto mt-12 flex flex-col gap-4;
+    }
+
+    .background-grid {
+        @apply absolute inset-0 z-0 h-full w-full
+            bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)]
+            [background-size:14px_14px];
+    }
+
+    .background-glow {
+        @apply absolute top-0 -z-10 h-screen w-screen bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))];
+    }
+
+
+    .divider{
+        @apply w-full h-px bg-[linear-gradient(to_right,transparent_0%,white_50%,transparent_100%)];
+    }
+
+    .spinner{
+        @apply border-[3px] animate-spin border-white border-t-transparent rounded-full aspect-square h-8;
+    }
+
+    .section-header{
+        @apply text-lg text-white font-semibold mt-2 mb-2;
+    }
+
+    .btn{
+        @apply block w-fit rounded-md py-2.5 px-6.5 bg-taupe-800 border border-taupe-700 text-xs font-semibold;
+    }
+
+    .badge{
+        /* @apply bg-white font-bold rounded-full text-xs text-black px-2 py-0.5; */
+        @apply font-bold text-black text-xs px-2 py-0.5 bg-taupe-100 rounded-sm;
+    }
+
+    .cards{
+        @apply flex flex-col gap-1;
+
+        .card{
+            @apply bg-taupe-950 border border-taupe-900 p-4 px-5 rounded-lg cursor-pointer;
+
+            .card-heading{
+
+                .card-title{
+                    @apply flex items-center gap-2;
+                }
+
+                h2{
+                    @apply md:text-xl tracking-tight text-white font-bold line-clamp-1;
+                }
+
+                p{
+                    @apply text-xs md:text-sm;
+                }
+            }
+
+            .card-details{
+                @apply mt-2 flex flex-col gap-2;
+
+                p{
+                    @apply text-sm text-white;
+                }
+
+                a{
+                    @apply text-sm text-white font-bold;
+                }
+            }
+        }
+    }
+}
